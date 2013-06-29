@@ -27,18 +27,20 @@ class SaxulumControllerProvider implements ServiceProviderInterface
         foreach ($app['controller.map']->getControllers() as $controller) {
             /** @var Controller $controller */
             $controllerNamespace = $controller->getNamespace();
-            $app[$controller->getServiceId()] = $app->share(function() use ($app, $controller, $controllerNamespace) {
-                if ($controller->isInjectContainer()) {
-                    return new $controllerNamespace($app);
-                }
-
-                $controllerReflection = new \ReflectionClass($controllerNamespace);
-                $controllerInstance = SaxulumControllerProvider::constructController($app, $controller, $controllerReflection);
-                SaxulumControllerProvider::methodInjections($app, $controller, $controllerReflection, $controllerInstance);
-
-                return $controllerInstance;
-            });
-            $controllerNamespace::addRoutes($app, $controller->getServiceId());
+            $controllerReflection = new \ReflectionClass($controllerNamespace);
+            if($controllerReflection->implementsInterface('Saxulum\SaxulumControllerProvider\Controller\ControllerRouteInterface') &&
+               !$controllerReflection->isAbstract() &&
+               !$controllerReflection->isInterface()) {
+                $app[$controller->getServiceId()] = $app->share(function() use ($app, $controller, $controllerNamespace, $controllerReflection) {
+                    if ($controller->isInjectContainer()) {
+                        return new $controllerNamespace($app);
+                    }
+                    $controllerInstance = SaxulumControllerProvider::constructController($app, $controller, $controllerReflection);
+                    SaxulumControllerProvider::methodInjections($app, $controller, $controllerReflection, $controllerInstance);
+                    return $controllerInstance;
+                });
+                $controllerNamespace::addRoutes($app, $controller->getServiceId());
+            }
         }
     }
 
