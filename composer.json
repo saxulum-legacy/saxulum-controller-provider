@@ -1,0 +1,24 @@
+{
+    "name": "saxulum/saxulum-controller-provider",
+    "description": "A controller registration provider",
+    "keywords": ["silex", "controller"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dominik Zogg",
+            "email": "dominik.zogg@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "silex/silex": "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Saxulum\\SaxulumControllerMap": "src"
+        }
+    }
+}
