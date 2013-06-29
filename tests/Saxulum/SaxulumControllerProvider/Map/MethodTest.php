@@ -17,5 +17,8 @@ class MethodTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($injectionKeys, $method->getInjectionKeys());
         $this->assertTrue($method->hasInjectionKeys());
         $this->assertEquals($method, new Method($method->__toArray()));
+
+        $newMethod = new Method($method->__toArray());
+        $this->assertEquals($method->__toArray(), $newMethod->__toArray());
     }
 }

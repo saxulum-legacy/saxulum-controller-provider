@@ -19,7 +19,9 @@ class ControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($controller->hasInjectionKeys());
         $this->assertTrue($controller->isInjectContainer());
         $this->assertFalse($controller->hasMethods());
-        $this->assertEquals($controller, new Controller($controller->__toArray()));
+
+        $newController = new Controller($controller->__toArray());
+        $this->assertEquals($controller->__toArray(), $newController->__toArray());
     }
 
     public function testScenario2()
@@ -38,7 +40,9 @@ class ControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($injectionKeys, $controller->getInjectionKeys());
         $this->assertTrue($controller->hasInjectionKeys());
         $this->assertFalse($controller->isInjectContainer());
-        $this->assertEquals($controller, new Controller($controller->__toArray()));
+
+        $newController = new Controller($controller->__toArray());
+        $this->assertEquals($controller->__toArray(), $newController->__toArray());
     }
 
     public function testScenario3()
@@ -70,7 +74,41 @@ class ControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($controller->hasMethods());
 
         $newController = new Controller($controller->__toArray());
+        $this->assertEquals($controller->__toArray(), $newController->__toArray());
+    }
 
+    public function testScenario4()
+    {
+        $namespace = 'Saxulum\SaxulumControllerProvider\Controller\TestController';
+        $serviceId = 'saxulum.saxulumcontrollerprovider.controller.testcontroller';
+        $injectionKeys = array('twig');
+
+        $methodArray = array(
+            'name' => 'setDoctrine',
+            'injectionKeys' => array('doctrine'),
+        );
+        $method = $this->getMock('Saxulum\SaxulumControllerProvider\Map\Method');
+
+        $method
+            ->expects($this->any())
+            ->method('__toArray')
+            ->will($this->returnValue($methodArray))
+        ;
+
+        $controller = new Controller();
+        $controller->setNamespace($namespace);
+        $controller->setServiceId($serviceId);
+        $controller->setInjectionKeys($injectionKeys);
+        $controller->addMethod($method);
+
+        $this->assertEquals($namespace, $controller->getNamespace());
+        $this->assertEquals($serviceId, $controller->getServiceId());
+        $this->assertEquals($injectionKeys, $controller->getInjectionKeys());
+        $this->assertTrue($controller->hasInjectionKeys());
+        $this->assertFalse($controller->isInjectContainer());
+        $this->assertTrue($controller->hasMethods());
+
+        $newController = new Controller($controller->__toArray());
         $this->assertEquals($controller->__toArray(), $newController->__toArray());
     }
 }
