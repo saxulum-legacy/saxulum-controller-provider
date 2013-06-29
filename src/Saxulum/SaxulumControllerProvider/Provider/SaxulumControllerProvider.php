@@ -1,13 +1,13 @@
 <?php
 
-namespace Saxulum\SaxulumControllerMap\Provider;
+namespace Saxulum\SaxulumControllerProvider\Provider;
 
-use Saxulum\SaxulumControllerMap\ControllerMap\Controller;
-use Saxulum\SaxulumControllerMap\ControllerMap\ControllerMap;
+use Saxulum\SaxulumControllerProvider\Map\Controller;
+use Saxulum\SaxulumControllerProvider\Map\Map;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
-class SaxulumControllerMapProvider implements ServiceProviderInterface
+class SaxulumControllerProvider implements ServiceProviderInterface
 {
     /**
      * {@inheritdoc}
@@ -15,7 +15,7 @@ class SaxulumControllerMapProvider implements ServiceProviderInterface
     public function register(Application $app)
     {
         $app['controller.map'] = $app->share(function() {
-            return new ControllerMap();
+            return new Map();
         });
     }
 
@@ -33,8 +33,8 @@ class SaxulumControllerMapProvider implements ServiceProviderInterface
                 }
 
                 $controllerReflection = new \ReflectionClass($controllerNamespace);
-                $controllerInstance = SaxulumControllerMapProvider::constructController($app, $controller, $controllerReflection);
-                SaxulumControllerMapProvider::methodInjections($app, $controller, $controllerReflection, $controllerInstance);
+                $controllerInstance = SaxulumControllerProvider::constructController($app, $controller, $controllerReflection);
+                SaxulumControllerProvider::methodInjections($app, $controller, $controllerReflection, $controllerInstance);
 
                 return $controllerInstance;
             });

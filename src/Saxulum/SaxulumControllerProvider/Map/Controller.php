@@ -1,6 +1,6 @@
 <?php
 
-namespace Saxulum\SaxulumControllerMap\ControllerMap;
+namespace Saxulum\SaxulumControllerProvider\Map;
 
 class Controller
 {
