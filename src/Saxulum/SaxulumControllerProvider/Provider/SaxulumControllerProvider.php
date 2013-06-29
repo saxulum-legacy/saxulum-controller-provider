@@ -37,6 +37,7 @@ class SaxulumControllerProvider implements ServiceProviderInterface
                     }
                     $controllerInstance = SaxulumControllerProvider::constructController($app, $controller, $controllerReflection);
                     SaxulumControllerProvider::methodInjections($app, $controller, $controllerReflection, $controllerInstance);
+
                     return $controllerInstance;
                 });
                 $controllerNamespace::addRoutes($app, $controller->getServiceId());
