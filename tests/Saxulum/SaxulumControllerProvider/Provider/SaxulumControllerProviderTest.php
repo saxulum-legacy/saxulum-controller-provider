@@ -14,7 +14,7 @@ class SaxulumControllerProviderTest extends WebTestCase
     {
         $client = $this->createClient();
 
-        $client->request('GET', '/containerinject');
+        $client->request('GET', '/container');
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertEquals('ok', $client->getResponse()->getContent());
 
@@ -32,7 +32,7 @@ class SaxulumControllerProviderTest extends WebTestCase
         $app->register(new SaxulumControllerProvider());
 
         $controller = new Controller();
-        $controller->setNamespace('Saxulum\SaxulumControllerProvider\Controller\ContainerInjectController');
+        $controller->setNamespace('Saxulum\SaxulumControllerProvider\Controller\ContainerExampleController');
         $controller->setServiceId('saxulum.saxulumcontrollerprovider.controller.containerinjectcontroller');
         $controller->setInjectContainer(true);
         $app['controller.map']->addController($controller);
@@ -42,7 +42,7 @@ class SaxulumControllerProviderTest extends WebTestCase
         $method->setInjectionKeys(array('test.data'));
 
         $controller = new Controller();
-        $controller->setNamespace('Saxulum\SaxulumControllerProvider\Controller\ServiceController');
+        $controller->setNamespace('Saxulum\SaxulumControllerProvider\Controller\ServiceExampleController');
         $controller->setServiceId('saxulum.saxulumcontrollerprovider.controller.serviceController');
         $controller->setInjectionKeys(array('test.data'));
         $controller->addMethod($method);

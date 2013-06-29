@@ -4,7 +4,7 @@ namespace Saxulum\SaxulumControllerProvider\Controller;
 
 use Silex\Application;
 
-class ServiceController implements ControllerRouteInterface
+class ServiceExampleController implements ControllerRouteInterface
 {
     /**
      * @var array

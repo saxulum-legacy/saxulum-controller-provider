@@ -4,7 +4,7 @@ namespace Saxulum\SaxulumControllerProvider\Controller;
 
 use Silex\Application;
 
-class ContainerInjectController implements ControllerRouteInterface
+class ContainerExampleController implements ControllerRouteInterface
 {
     /**
      * @var \Pimple
@@ -14,8 +14,8 @@ class ContainerInjectController implements ControllerRouteInterface
     public static function addRoutes(Application $app, $serviceId)
     {
         $app
-            ->get('/containerinject', $serviceId . ':indexAction')
-            ->bind('containerinject_index')
+            ->get('/container', $serviceId . ':indexAction')
+            ->bind('container_index')
         ;
     }
 
