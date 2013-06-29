@@ -28,7 +28,7 @@ class SaxulumControllerProvider implements ServiceProviderInterface
             /** @var Controller $controller */
             $controllerNamespace = $controller->getNamespace();
             $app[$controller->getServiceId()] = $app->share(function() use ($app, $controller, $controllerNamespace) {
-                if($controller->isInjectContainer()) {
+                if ($controller->isInjectContainer()) {
                     return new $controllerNamespace($app);
                 }
 
@@ -43,9 +43,9 @@ class SaxulumControllerProvider implements ServiceProviderInterface
     }
 
     /**
-     * @param Application $app
-     * @param Controller $controller
-     * @param \ReflectionClass $controllerReflection
+     * @param  Application      $app
+     * @param  Controller       $controller
+     * @param  \ReflectionClass $controllerReflection
      * @return object
      */
     public static function constructController(Application $app, Controller $controller, \ReflectionClass $controllerReflection)
@@ -66,8 +66,8 @@ class SaxulumControllerProvider implements ServiceProviderInterface
     }
 
     /**
-     * @param Application $app
-     * @param Controller $controller
+     * @param Application      $app
+     * @param Controller       $controller
      * @param \ReflectionClass $controllerReflection
      * @param $controllerInstance
      */
