@@ -64,7 +64,7 @@ class Method
     }
 
     /**
-     * @return array
+     * @return bool
      */
     public function hasInjectionKeys()
     {

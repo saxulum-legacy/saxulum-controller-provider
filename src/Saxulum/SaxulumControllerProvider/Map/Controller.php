@@ -122,7 +122,7 @@ class Controller
     }
 
     /**
-     * @return array
+     * @return bool
      */
     public function hasInjectionKeys()
     {
