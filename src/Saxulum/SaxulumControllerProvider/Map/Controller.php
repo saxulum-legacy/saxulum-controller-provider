@@ -162,12 +162,17 @@ class Controller
      * @param  bool   $stopPropagation
      * @return Method
      */
-    public function addMethod(Method $method, $stopPropagation = false)
+    public function addMethod(Method $method = null, $stopPropagation = false)
     {
-        $this->methods[] = $method;
+        if (is_null($method)) {
+            $method = new Method();
+        }
+
         if (!$stopPropagation) {
             $method->setController($this, true);
         }
+
+        $this->methods[] = $method;
 
         return $method;
     }
