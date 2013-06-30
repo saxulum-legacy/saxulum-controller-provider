@@ -1,7 +1,7 @@
 saxulum controller provider
 ===========================
 
-*works with plain silex-php*
+**works with plain silex-php**
 
 [![Build Status](https://api.travis-ci.org/saxulum/saxulum-controller-provider.png?branch=master)](https://travis-ci.org/saxulum/saxulum-controller-provider)
 [![Total Downloads](https://poser.pugx.org/saxulum/saxulum-controller-provider/downloads.png)](https://packagist.org/packages/saxulum/saxulum-controller-provider)
@@ -51,7 +51,7 @@ $app['controller.map']
         ->setServiceId('saxulum.saxulumcontrollerprovider.controller.containerinjectcontroller')
         ->setInjectContainer(true)
     ->end()
-        ->addController(new Controller)
+    ->addController(new Controller)
         ->setNamespace('Saxulum\SaxulumControllerProvider\Controller\ServiceExampleController')
         ->setServiceId('saxulum.saxulumcontrollerprovider.controller.serviceController')
         ->setInjectionKeys(array('test.data'))
