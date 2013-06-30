@@ -29,6 +29,6 @@ class ContainerExampleController implements ControllerRouteInterface
 
     public function indexAction()
     {
-        return $this->container instanceof \Pimple ? 'ok': '';
+        return $this->container instanceof \Pimple ? 'ok': 'failed';
     }
 }
