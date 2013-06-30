@@ -1,5 +1,7 @@
-saxulum controller provider (works with plain silex-php)
-========================================================
+saxulum controller provider
+===========================
+
+*works with plain silex-php*
 
 [![Build Status](https://api.travis-ci.org/saxulum/saxulum-controller-provider.png?branch=master)](https://travis-ci.org/saxulum/saxulum-controller-provider)
 [![Total Downloads](https://poser.pugx.org/saxulum/saxulum-controller-provider/downloads.png)](https://packagist.org/packages/saxulum/saxulum-controller-provider)
@@ -63,16 +65,6 @@ $app['controller.map']
         ->end()
     ->end()
 ;
-```
-
-```php
-public static function addRoutes(Application $app, $serviceId)
-{
-    $app
-        ->get('/container', $serviceId . ':indexAction')
-        ->bind('container_index')
-    ;
-}
 ```
 
 [1]: http://silex.sensiolabs.org/doc/providers/service_controller.html
