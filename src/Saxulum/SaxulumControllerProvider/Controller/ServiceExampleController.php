@@ -9,6 +9,11 @@ class ServiceExampleController implements ControllerRouteInterface
     /**
      * @var array
      */
+    protected $testData;
+
+    /**
+     * @var array
+     */
     protected $testData1;
 
     /**
@@ -29,16 +34,33 @@ class ServiceExampleController implements ControllerRouteInterface
      */
     public function __construct(array $testData)
     {
-        $this->testData1 = $testData;
+        $this->testData = $testData;
     }
 
-    public function setTestData(array $testData)
+    /**
+     * @param array $testData1
+     */
+    public function setTestData1(array $testData1)
     {
-        $this->testData2 = $testData;
+        $this->testData1 = $testData1;
+    }
+
+    /**
+     * @param array $testData2
+     */
+    public function setTestData2(array $testData2)
+    {
+        $this->testData2 = $testData2;
     }
 
     public function indexAction()
     {
-        return array_key_exists('key1',$this->testData1) && array_key_exists('key1',$this->testData2) ? 'ok': '';
+        if(array_key_exists('key1', $this->testData) &&
+           array_key_exists('key1', $this->testData1) &&
+           array_key_exists('key1', $this->testData2)) {
+            return 'ok';
+        }
+
+        return 'failed';
     }
 }
