@@ -5,6 +5,11 @@ namespace Saxulum\SaxulumControllerProvider\Map;
 class Method
 {
     /**
+     * @var Controller
+     */
+    protected $controller;
+
+    /**
      * @var string
      */
     protected $name;
@@ -23,6 +28,29 @@ class Method
             $this->setName($methodInjectionInfo['name']);
             $this->setInjectionKeys($methodInjectionInfo['injectionKeys']);
         }
+    }
+
+    /**
+     * @param Controller $controller
+     * @param bool       $stopPropagation
+     * @return $this
+     */
+    public function setController(Controller $controller, $stopPropagation = false)
+    {
+        if (!$stopPropagation) {
+            $controller->addMethod($this, true);
+        }
+        $this->controller = $controller;
+
+        return $this;
+    }
+
+    /**
+     * @return Controller
+     */
+    public function end()
+    {
+        return $this->controller;
     }
 
     /**

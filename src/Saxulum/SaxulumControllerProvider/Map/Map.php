@@ -10,14 +10,18 @@ class Map
     protected $controllers = array();
 
     /**
-     * @param Controller $controllerServiceInfo
-     * @return $this
+     * @param  Controller $controllerServiceInfo
+     * @param  bool       $stopPropagation
+     * @return Controller
      */
-    public function addController(Controller $controllerServiceInfo)
+    public function addController(Controller $controllerServiceInfo, $stopPropagation = false)
     {
         $this->controllers[] = $controllerServiceInfo;
+        if (!$stopPropagation) {
+            $controllerServiceInfo->setMap($this, true);
+        }
 
-        return $this;
+        return $controllerServiceInfo;
     }
 
     /**

@@ -5,6 +5,11 @@ namespace Saxulum\SaxulumControllerProvider\Map;
 class Controller
 {
     /**
+     * @var Map
+     */
+    protected $map;
+
+    /**
      * @var string
      */
     protected $serviceId;
@@ -43,6 +48,29 @@ class Controller
                 $this->addMethod(new Method($methodInfo));
             }
         }
+    }
+
+    /**
+     * @param Map  $map
+     * @param bool $stopPropagation
+     * @return $this
+     */
+    public function setMap(Map $map, $stopPropagation = false)
+    {
+        if (!$stopPropagation) {
+            $map->addController($this, true);
+        }
+        $this->map = $map;
+
+        return $this;
+    }
+
+    /**
+     * @return Map
+     */
+    public function end()
+    {
+        return $this->map;
     }
 
     /**
@@ -130,14 +158,18 @@ class Controller
     }
 
     /**
-     * @param Method $method
-     * @return $this
+     * @param  Method $method
+     * @param  bool   $stopPropagation
+     * @return Method
      */
-    public function addMethod($method)
+    public function addMethod(Method $method, $stopPropagation = false)
     {
         $this->methods[] = $method;
+        if (!$stopPropagation) {
+            $method->setController($this, true);
+        }
 
-        return $this;
+        return $method;
     }
 
     /**
