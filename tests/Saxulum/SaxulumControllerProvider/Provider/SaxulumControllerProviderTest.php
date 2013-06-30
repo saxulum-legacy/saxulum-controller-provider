@@ -3,8 +3,6 @@
 namespace Saxulum\SaxulumControllerProvider\Provider;
 
 use Saxulum\SaxulumControllerProvider\Map\Map;
-use Saxulum\SaxulumControllerProvider\Map\Controller;
-use Saxulum\SaxulumControllerProvider\Map\Method;
 use Silex\Application;
 use Silex\Provider\ServiceControllerServiceProvider;
 use Silex\WebTestCase;
@@ -36,20 +34,20 @@ class SaxulumControllerProviderTest extends WebTestCase
         /** @var Map $map */
 
         $map
-            ->addController(new Controller)
+            ->addController()
                 ->setNamespace('Saxulum\SaxulumControllerProvider\Controller\ContainerExampleController')
                 ->setServiceId('saxulum.saxulumcontrollerprovider.controller.containerinjectcontroller')
                 ->setInjectContainer(true)
             ->end()
-                ->addController(new Controller)
+                ->addController()
                 ->setNamespace('Saxulum\SaxulumControllerProvider\Controller\ServiceExampleController')
                 ->setServiceId('saxulum.saxulumcontrollerprovider.controller.serviceController')
                 ->setInjectionKeys(array('test.data'))
-                ->addMethod(new Method)
+                ->addMethod()
                     ->setName('setTestData1')
                     ->setInjectionKeys(array('test.data'))
                 ->end()
-                ->addMethod(new Method)
+                ->addMethod()
                     ->setName('setTestData2')
                     ->setInjectionKeys(array('test.data'))
                 ->end()
