@@ -2,6 +2,7 @@
 
 namespace Saxulum\SaxulumControllerProvider\Provider;
 
+use Saxulum\SaxulumControllerProvider\Map\Map;
 use Saxulum\SaxulumControllerProvider\Map\Controller;
 use Saxulum\SaxulumControllerProvider\Map\Method;
 use Silex\Application;
@@ -31,22 +32,29 @@ class SaxulumControllerProviderTest extends WebTestCase
         $app->register(new ServiceControllerServiceProvider());
         $app->register(new SaxulumControllerProvider());
 
-        $controller = new Controller();
-        $controller->setNamespace('Saxulum\SaxulumControllerProvider\Controller\ContainerExampleController');
-        $controller->setServiceId('saxulum.saxulumcontrollerprovider.controller.containerinjectcontroller');
-        $controller->setInjectContainer(true);
-        $app['controller.map']->addController($controller);
+        $map = $app['controller.map'];
+        /** @var Map $map */
 
-        $method = new Method();
-        $method->setName('setTestData');
-        $method->setInjectionKeys(array('test.data'));
-
-        $controller = new Controller();
-        $controller->setNamespace('Saxulum\SaxulumControllerProvider\Controller\ServiceExampleController');
-        $controller->setServiceId('saxulum.saxulumcontrollerprovider.controller.serviceController');
-        $controller->setInjectionKeys(array('test.data'));
-        $controller->addMethod($method);
-        $app['controller.map']->addController($controller);
+        $map
+            ->addController(new Controller)
+                ->setNamespace('Saxulum\SaxulumControllerProvider\Controller\ContainerExampleController')
+                ->setServiceId('saxulum.saxulumcontrollerprovider.controller.containerinjectcontroller')
+                ->setInjectContainer(true)
+            ->end()
+                ->addController(new Controller)
+                ->setNamespace('Saxulum\SaxulumControllerProvider\Controller\ServiceExampleController')
+                ->setServiceId('saxulum.saxulumcontrollerprovider.controller.serviceController')
+                ->setInjectionKeys(array('test.data'))
+                ->addMethod(new Method)
+                    ->setName('setTestData1')
+                    ->setInjectionKeys(array('test.data'))
+                ->end()
+                ->addMethod(new Method)
+                    ->setName('setTestData2')
+                    ->setInjectionKeys(array('test.data'))
+                ->end()
+            ->end()
+        ;
 
         $app['test.data'] = array(
             'key1' => 'value1'
