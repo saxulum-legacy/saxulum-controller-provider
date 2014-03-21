@@ -6,6 +6,7 @@ saxulum controller provider
 [![Build Status](https://api.travis-ci.org/saxulum/saxulum-controller-provider.png?branch=master)](https://travis-ci.org/saxulum/saxulum-controller-provider)
 [![Total Downloads](https://poser.pugx.org/saxulum/saxulum-controller-provider/downloads.png)](https://packagist.org/packages/saxulum/saxulum-controller-provider)
 [![Latest Stable Version](https://poser.pugx.org/saxulum/saxulum-controller-provider/v/stable.png)](https://packagist.org/packages/saxulum/saxulum-controller-provider)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/saxulum/saxulum-controller-provider/badges/quality-score.png?s=bd95553006695a8c94a5d121e5e3fe930edc201d)](https://scrutinizer-ci.com/g/saxulum/saxulum-controller-provider/)
 
 Features
 --------
