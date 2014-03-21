@@ -51,8 +51,8 @@ class Controller
     }
 
     /**
-     * @param Map  $map
-     * @param bool $stopPropagation
+     * @param  Map   $map
+     * @param  bool  $stopPropagation
      * @return $this
      */
     public function setMap(Map $map, $stopPropagation = false)
@@ -93,7 +93,7 @@ class Controller
     }
 
     /**
-     * @param string $namespace
+     * @param  string $namespace
      * @return $this
      */
     public function setNamespace($namespace)
@@ -112,7 +112,7 @@ class Controller
     }
 
     /**
-     * @param boolean $injectContainer
+     * @param  boolean $injectContainer
      * @return $this
      */
     public function setInjectContainer($injectContainer)
@@ -131,7 +131,7 @@ class Controller
     }
 
     /**
-     * @param array $injectionKeys
+     * @param  array $injectionKeys
      * @return $this
      */
     public function setInjectionKeys($injectionKeys)

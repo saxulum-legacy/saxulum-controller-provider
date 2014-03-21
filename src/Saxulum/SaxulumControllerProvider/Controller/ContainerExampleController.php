@@ -11,6 +11,10 @@ class ContainerExampleController implements ControllerRouteInterface
      */
     protected $container;
 
+    /**
+     * @param Application $app
+     * @param string      $serviceId
+     */
     public static function addRoutes(Application $app, $serviceId)
     {
         $app

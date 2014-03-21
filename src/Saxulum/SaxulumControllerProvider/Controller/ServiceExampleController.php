@@ -21,6 +21,10 @@ class ServiceExampleController implements ControllerRouteInterface
      */
     protected $testData2;
 
+    /**
+     * @param Application $app
+     * @param string      $serviceId
+     */
     public static function addRoutes(Application $app, $serviceId)
     {
         $app

@@ -14,7 +14,7 @@ class SaxulumControllerProvider implements ServiceProviderInterface
      */
     public function register(Application $app)
     {
-        $app['controller.map'] = $app->share(function() {
+        $app['controller.map'] = $app->share(function () {
             return new Map();
         });
     }
@@ -31,7 +31,7 @@ class SaxulumControllerProvider implements ServiceProviderInterface
             if($controllerReflection->implementsInterface('Saxulum\SaxulumControllerProvider\Controller\ControllerRouteInterface') &&
                !$controllerReflection->isAbstract() &&
                !$controllerReflection->isInterface()) {
-                $app[$controller->getServiceId()] = $app->share(function() use ($app, $controller, $controllerNamespace, $controllerReflection) {
+                $app[$controller->getServiceId()] = $app->share(function () use ($app, $controller, $controllerNamespace, $controllerReflection) {
                     if ($controller->isInjectContainer()) {
                         return new $controllerNamespace($app);
                     }

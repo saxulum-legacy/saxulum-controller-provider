@@ -31,8 +31,8 @@ class Method
     }
 
     /**
-     * @param Controller $controller
-     * @param bool       $stopPropagation
+     * @param  Controller $controller
+     * @param  bool       $stopPropagation
      * @return $this
      */
     public function setController(Controller $controller, $stopPropagation = false)
@@ -54,7 +54,7 @@ class Method
     }
 
     /**
-     * @param string $name
+     * @param  string $name
      * @return $this
      */
     public function setName($name)
@@ -73,7 +73,7 @@ class Method
     }
 
     /**
-     * @param array $injectionKeys
+     * @param  array $injectionKeys
      * @return $this
      */
     public function setInjectionKeys($injectionKeys)
